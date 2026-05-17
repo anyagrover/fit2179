@@ -1,0 +1,55 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 600,
+  "height": 350,
+  "title": {
+    "text": "Where Do Australia's Visitors Come From?",
+    "subtitle": "Bubble size = number of trips. Hover for details.",
+    "fontSize": 16,
+    "subtitleFontSize": 12
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "https://cdn.jsdelivr.net/npm/vega-datasets@2/data/world-110m.json",
+        "format": {"type": "topojson", "feature": "countries"}
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#e8e8e8",
+        "stroke": "white",
+        "strokeWidth": 0.5
+      },
+      "projection": {"type": "naturalEarth1"}
+    },
+    {
+      "data": {
+        "url": "data/visitors_by_country.csv"
+      },
+      "mark": {
+        "type": "circle",
+        "opacity": 0.8
+      },
+      "projection": {"type": "naturalEarth1"},
+      "encoding": {
+        "longitude": {"field": "longitude", "type": "quantitative"},
+        "latitude": {"field": "latitude", "type": "quantitative"},
+        "size": {
+          "field": "trips",
+          "type": "quantitative",
+          "scale": {"range": [50, 2000]},
+          "legend": {
+            "title": "Trips ('000)",
+            "orient": "bottom-left"
+          }
+        },
+        "color": {"value": "#c1440e"},
+        "tooltip": [
+          {"field": "country", "type": "nominal", "title": "Country"},
+          {"field": "trips", "type": "quantitative", "title": "Trips ('000)"},
+          {"field": "spend", "type": "quantitative", "title": "Spend ($M)"}
+        ]
+      }
+    }
+  ]
+}

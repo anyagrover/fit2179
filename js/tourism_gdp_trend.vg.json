@@ -1,0 +1,84 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 500,
+  "height": 300,
+  "title": {
+    "text": "Australia's Tourism GDP Over Time",
+    "subtitle": "The COVID-19 pandemic caused a dramatic collapse in 2020-21",
+    "fontSize": 16,
+    "subtitleFontSize": 12
+  },
+  "data": {
+    "url": "data/tourism_gdp.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "color": "#003049",
+        "opacity": 0.15
+      },
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal"},
+        "y": {"field": "gdp", "type": "quantitative"}
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "color": "#003049",
+        "strokeWidth": 3,
+        "point": {
+          "filled": true,
+          "color": "#003049",
+          "size": 60
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "axis": {
+            "title": null,
+            "labelAngle": -30,
+            "labelFontSize": 11
+          }
+        },
+        "y": {
+          "field": "gdp",
+          "type": "quantitative",
+          "axis": {
+            "title": "Tourism GDP ($m)",
+            "titleFontSize": 11,
+            "grid": false
+          }
+        },
+        "tooltip": [
+          {"field": "year", "type": "ordinal", "title": "Year"},
+          {"field": "gdp", "type": "quantitative", "title": "GDP ($m)"},
+          {"field": "gdp_share", "type": "quantitative", "title": "Share of Economy (%)"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "color": "#c1440e",
+        "fontWeight": "bold",
+        "dy": -15,
+        "fontSize": 11
+      },
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal"},
+        "y": {"field": "gdp", "type": "quantitative"},
+        "text": {
+          "condition": {
+            "test": "datum.year === '2020-21'",
+            "value": "COVID-19 ↓"
+          },
+          "value": ""
+        }
+      }
+    }
+  ]
+}

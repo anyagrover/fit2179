@@ -1,0 +1,50 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 500,
+  "height": 400,
+  "title": {
+    "text": "International Visitors by Australian State (2025)",
+    "subtitle": "Darker colour = more visitors. Hover for details.",
+    "fontSize": 16,
+    "subtitleFontSize": 12
+  },
+  "projection": {"type": "mercator"},
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/australian-states.json",
+        "format": {"type": "json", "property": "features"}
+      },
+      "transform": [
+        {
+          "lookup": "properties.STATE_NAME",
+          "from": {
+            "data": {"url": "data/visitors_by_state.csv"},
+            "key": "state",
+            "fields": ["trips", "expenditure"]
+          }
+        }
+      ],
+      "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 1},
+      "encoding": {
+        "color": {
+          "field": "trips",
+          "type": "quantitative",
+          "scale": {
+            "scheme": "blues"
+          },
+          "legend": {
+            "title": "Visitor Trips ('000)",
+            "orient": "bottom-right",
+            "labelFontSize": 11
+          }
+        },
+        "tooltip": [
+          {"field": "properties.STATE_NAME", "type": "nominal", "title": "State"},
+          {"field": "trips", "type": "quantitative", "title": "Trips ('000)"},
+          {"field": "expenditure", "type": "quantitative", "title": "Expenditure ($M)"}
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 400,
+  "height": 300,
+  "title": {
+    "text": "Why Do Visitors Come to Australia?",
+    "subtitle": "International visitor trips by purpose, year ending December 2025",
+    "fontSize": 16,
+    "subtitleFontSize": 12
+  },
+  "data": {
+    "url": "data/purpose_of_visit.csv"
+  },
+  "mark": {
+    "type": "arc",
+    "innerRadius": 80,
+    "outerRadius": 140,
+    "stroke": "white",
+    "strokeWidth": 2
+  },
+  "encoding": {
+    "theta": {
+      "field": "trips",
+      "type": "quantitative"
+    },
+    "color": {
+      "field": "purpose",
+      "type": "nominal",
+      "scale": {
+        "domain": ["Holiday", "Visiting friends and relatives", "Business", "Education", "Employment", "Other"],
+        "range": ["#003049", "#c1440e", "#457b9d", "#e9c46a", "#2a9d8f", "#adb5bd"]
+      },
+      "legend": {
+        "title": "Purpose",
+        "orient": "right",
+        "labelFontSize": 11
+      }
+    },
+    "tooltip": [
+      {"field": "purpose", "type": "nominal", "title": "Purpose"},
+      {"field": "trips", "type": "quantitative", "title": "Trips ('000)"}
+    ]
+  }
+}

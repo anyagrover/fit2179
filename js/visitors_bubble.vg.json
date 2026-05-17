@@ -1,0 +1,83 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 500,
+  "height": 400,
+  "title": {
+    "text": "International Visitors to Australia by Country",
+    "subtitle": "Bubble size = nights stayed. X = trips, Y = spend in Australia",
+    "fontSize": 16,
+    "subtitleFontSize": 12
+  },
+  "data": {
+    "url": "data/visitors_by_country.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "circle",
+        "opacity": 0.8,
+        "stroke": "white",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "trips",
+          "type": "quantitative",
+          "axis": {
+            "title": "Number of Trips ('000)",
+            "titleFontSize": 11,
+            "grid": false
+          }
+        },
+        "y": {
+          "field": "spend",
+          "type": "quantitative",
+          "axis": {
+            "title": "Spend in Australia ($M)",
+            "titleFontSize": 11,
+            "grid": false
+          }
+        },
+        "size": {
+          "field": "nights",
+          "type": "quantitative",
+          "scale": {"range": [50, 1500]},
+          "legend": {
+            "title": "Nights Stayed",
+            "orient": "bottom-right"
+          }
+        },
+        "color": {"value": "#003049"},
+        "tooltip": [
+          {"field": "country", "type": "nominal", "title": "Country"},
+          {"field": "trips", "type": "quantitative", "title": "Trips ('000)"},
+          {"field": "spend", "type": "quantitative", "title": "Spend ($M)"},
+          {"field": "nights", "type": "quantitative", "title": "Nights ('000)"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -12,
+        "fontSize": 10,
+        "fontWeight": "normal",
+        "color": "#333"
+      },
+      "encoding": {
+        "x": {
+          "field": "trips",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "spend",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "country",
+          "type": "nominal"
+        }
+      }
+    }
+  ]
+}

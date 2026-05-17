@@ -1,0 +1,75 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 500,
+  "height": 300,
+  "title": {
+    "text": "Tourist Expenditure by City (2024 vs 2025)",
+    "subtitle": "Regional expenditure in AUD millions",
+    "fontSize": 16,
+    "subtitleFontSize": 12
+  },
+  "data": {
+    "url": "data/city_expenditure.csv"
+  },
+  "transform": [
+    {
+      "fold": ["expenditure_2024", "expenditure_2025"],
+      "as": ["year", "expenditure"]
+    },
+    {
+      "calculate": "datum.year === 'expenditure_2024' ? '2024' : '2025'",
+      "as": "year_label"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {"type": "rule", "strokeWidth": 2, "color": "#adb5bd"},
+      "encoding": {
+        "y": {
+          "field": "city",
+          "type": "nominal",
+          "sort": {"field": "expenditure", "order": "descending"}
+        },
+        "x": {
+          "field": "expenditure_2024",
+          "type": "quantitative"
+        },
+        "x2": {"field": "expenditure_2025"}
+      }
+    },
+    {
+      "mark": {"type": "point", "filled": true, "size": 120},
+      "encoding": {
+        "y": {
+          "field": "city",
+          "type": "nominal",
+          "sort": {"field": "expenditure", "order": "descending"},
+          "axis": {"title": null, "labelFontSize": 11}
+        },
+        "x": {
+          "field": "expenditure",
+          "type": "quantitative",
+          "axis": {"title": "Expenditure ($M)", "grid": false}
+        },
+        "color": {
+          "field": "year_label",
+          "type": "nominal",
+          "scale": {
+            "domain": ["2024", "2025"],
+            "range": ["#003049", "#c1440e"]
+          },
+          "legend": {
+            "title": "Year",
+            "orient": "top-right",
+            "labelFontSize": 11
+          }
+        },
+        "tooltip": [
+          {"field": "city", "type": "nominal", "title": "City"},
+          {"field": "year_label", "type": "nominal", "title": "Year"},
+          {"field": "expenditure", "type": "quantitative", "title": "Expenditure ($M)"}
+        ]
+      }
+    }
+  ]
+}

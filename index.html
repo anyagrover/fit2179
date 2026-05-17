@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Australia's Tourism Story</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background-color: #f5f0e8;
+      color: #1a1a1a;
+    }
+
+    header {
+      background-color: #003049;
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3em;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      margin-top: 12px;
+      font-size: 1.1em;
+      opacity: 0.8;
+    }
+
+    .section {
+      max-width: 1100px;
+      margin: 60px auto;
+      padding: 0 30px;
+    }
+
+    .section-label {
+      font-size: 0.85em;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #c1440e;
+      margin-bottom: 6px;
+    }
+
+    .section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2em;
+      margin-bottom: 12px;
+      color: #003049;
+    }
+
+    .section p {
+      font-size: 1em;
+      line-height: 1.8;
+      max-width: 700px;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #d0c9bb;
+      margin: 60px auto;
+      max-width: 1100px;
+    }
+
+    footer {
+      background-color: #003049;
+      color: #ccc;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.85em;
+      margin-top: 80px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Australia's Tourism Story</h1>
+    <p>Who visits, where they go, and what they spend</p>
+  </header>
+
+  <!-- SECTION I -->
+  <div class="section">
+    <div class="section-label">Section I</div>
+    <h2>Australia as a Global Destination</h2>
+    <p>Australia draws millions of visitors every year. But how does it stack up against other major destinations, and how has tourism grown over time?</p>
+    <div class="chart-box" id="gdp_trend_chart"></div>
+    <div class="chart-box" id="world_compare_chart"></div>
+  </div>
+  
+
+  <hr class="divider">
+
+  <!-- SECTION II -->
+  <div class="section">
+    <div class="section-label">Section II</div>
+    <h2>Who's Visiting Australia?</h2>
+    <p>Visitors come from all corners of the world. Some countries send far more tourists than others — and their reasons for visiting vary just as much.</p>
+    <div class="chart-box" id="bubble_chart"></div>
+    <div class="chart-box" id="purpose_chart"></div>
+    <div class="chart-box" id="world_map"></div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SECTION III -->
+  <div class="section">
+    <div class="section-label">Section III</div>
+    <h2>Where Do Tourists Go?</h2>
+    <p>From the beaches of Queensland to the laneways of Melbourne, tourists spread unevenly across Australia's states and cities.</p>
+    <div class="chart-box" id="city_chart"></div>
+    <div class="chart-box" id="aus_map"></div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SECTION IV -->
+<div class="section">
+  <div class="section-label">Section IV</div>
+  <h2>The Economic Impact of Tourism</h2>
+  <p>Tourism isn't just about sightseeing — it's a major driver of jobs, revenue, and GDP across the country.</p>
+  <div class="chart-row">
+    <div class="chart-box" id="jobs_chart"></div>
+    <div class="chart-box" id="gdp_area_chart"></div>
+    <div class="chart-box" id="gdp_jobs_chart"></div>
+  </div>
+</div>
+
+  <footer>
+    Visualisation by Anya Grover &nbsp;|&nbsp; Data: Tourism Research Australia, ABS &nbsp;|&nbsp; May 2026
+  </footer>
+
+  <script>
+  vegaEmbed('#jobs_chart', 'js/jobs_by_industry.vg.json').catch(console.error);
+  vegaEmbed('#gdp_area_chart', 'js/domestic_vs_international_gdp.vg.json').catch(console.error);
+  vegaEmbed('#gdp_jobs_chart', 'js/tourism_gdp_jobs.vg.json').catch(console.error);
+  vegaEmbed('#gdp_trend_chart', 'js/tourism_gdp_trend.vg.json').catch(console.error);
+  vegaEmbed('#world_compare_chart', 'js/australia_vs_world.vg.json').catch(console.error);
+  vegaEmbed('#bubble_chart', 'js/visitors_bubble.vg.json').catch(console.error);
+  vegaEmbed('#purpose_chart', 'js/purpose_of_visit.vg.json').catch(console.error);
+  vegaEmbed('#city_chart', 'js/city_expenditure.vg.json').catch(console.error);
+  vegaEmbed('#aus_map', 'js/australia_map.vg.json').catch(console.error);
+  vegaEmbed('#world_map', 'js/world_map.vg.json').catch(console.error);
+  </script>
+
+</body>
+</html>

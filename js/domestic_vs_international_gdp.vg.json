@@ -1,0 +1,63 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 500,
+  "height": 300,
+  "title": {
+    "text": "Domestic vs International Tourism GDP (2016–2025)",
+    "subtitle": "AUD millions, current prices",
+    "fontSize": 16,
+    "subtitleFontSize": 12
+  },
+  "data": {
+    "url": "data/domestic_vs_international_gdp.csv"
+  },
+  "transform": [
+    {
+      "fold": ["domestic", "international"],
+      "as": ["visitor_type", "gdp"]
+    }
+  ],
+  "mark": {
+    "type": "area",
+    "opacity": 0.8
+  },
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "axis": {
+        "title": null,
+        "labelAngle": -30,
+        "labelFontSize": 11
+      }
+    },
+    "y": {
+      "field": "gdp",
+      "type": "quantitative",
+      "stack": "zero",
+      "axis": {
+        "title": "Tourism GDP ($m)",
+        "titleFontSize": 11,
+        "grid": false
+      }
+    },
+    "color": {
+      "field": "visitor_type",
+      "type": "nominal",
+      "scale": {
+        "domain": ["domestic", "international"],
+        "range": ["#003049", "#c1440e"]
+      },
+      "legend": {
+        "title": "Visitor Type",
+        "orient": "top-left",
+        "labelFontSize": 11
+      }
+    },
+    "tooltip": [
+      {"field": "year", "type": "ordinal", "title": "Year"},
+      {"field": "visitor_type", "type": "nominal", "title": "Type"},
+      {"field": "gdp", "type": "quantitative", "title": "GDP ($m)"}
+    ]
+  }
+}

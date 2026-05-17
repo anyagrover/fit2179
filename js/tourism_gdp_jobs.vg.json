@@ -1,0 +1,89 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 500,
+  "height": 300,
+  "title": {
+    "text": "Tourism GDP and Jobs Over Time",
+    "subtitle": "GDP in AUD millions (left) vs filled jobs in thousands (right)",
+    "fontSize": 16,
+    "subtitleFontSize": 12
+  },
+  "data": {
+    "url": "data/tourism_gdp_jobs.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "color": "#003049",
+        "strokeWidth": 3,
+        "point": {
+          "filled": true,
+          "color": "#003049",
+          "size": 60
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "axis": {
+            "title": null,
+            "labelAngle": -30,
+            "labelFontSize": 11
+          }
+        },
+        "y": {
+          "field": "gdp",
+          "type": "quantitative",
+          "axis": {
+            "title": "Tourism GDP ($m)",
+            "titleColor": "#003049",
+            "grid": false
+          }
+        },
+        "tooltip": [
+          {"field": "year", "type": "ordinal", "title": "Year"},
+          {"field": "gdp", "type": "quantitative", "title": "GDP ($m)"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "color": "#c1440e",
+        "strokeWidth": 3,
+        "strokeDash": [6, 3],
+        "point": {
+          "filled": true,
+          "color": "#c1440e",
+          "size": 60
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "jobs",
+          "type": "quantitative",
+          "axis": {
+            "title": "Filled Jobs ('000)",
+            "titleColor": "#c1440e",
+            "grid": false
+          }
+        },
+        "tooltip": [
+          {"field": "year", "type": "ordinal", "title": "Year"},
+          {"field": "jobs", "type": "quantitative", "title": "Jobs ('000)"}
+        ]
+      }
+    }
+  ],
+  "resolve": {
+    "scale": {
+      "y": "independent"
+    }
+  }
+}

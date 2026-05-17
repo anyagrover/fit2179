@@ -1,0 +1,43 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 500,
+  "height": 350,
+  "title": {
+    "text": "Tourism Jobs by Industry (2024-25)",
+    "subtitle": "Thousands of filled jobs",
+    "fontSize": 16,
+    "subtitleFontSize": 12
+  },
+  "data": {
+    "url": "data/jobs_by_industry.csv"
+  },
+  "mark": {
+    "type": "bar",
+    "cornerRadiusEnd": 4,
+    "color": "#c1440e"
+  },
+  "encoding": {
+    "y": {
+      "field": "industry",
+      "type": "nominal",
+      "sort": "-x",
+      "axis": {
+        "title": null,
+        "labelFontSize": 11
+      }
+    },
+    "x": {
+      "field": "jobs",
+      "type": "quantitative",
+      "axis": {
+        "title": "Jobs ('000)",
+        "titleFontSize": 11,
+        "grid": false
+      }
+    },
+    "tooltip": [
+      {"field": "industry", "type": "nominal", "title": "Industry"},
+      {"field": "jobs", "type": "quantitative", "title": "Jobs ('000)"}
+    ]
+  }
+}
