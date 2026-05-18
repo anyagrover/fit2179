@@ -65,9 +65,28 @@
     .section p {
       font-size: 1em;
       line-height: 1.8;
-      max-width: 700px;
+      max-width: 750px;
       color: #333;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
+    }
+
+    .chart-row {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      align-items: flex-start;
+    }
+
+    .chart-box {
+      flex: 1;
+      min-width: 300px;
+      overflow: visible;
+    }
+
+    .chart-full {
+      width: 100%;
+      margin-top: 30px;
     }
 
     .divider {
@@ -84,6 +103,7 @@
       padding: 30px 20px;
       font-size: 0.85em;
       margin-top: 80px;
+      line-height: 2;
     }
   </style>
 </head>
@@ -98,11 +118,13 @@
   <div class="section">
     <div class="section-label">Section I</div>
     <h2>Australia as a Global Destination</h2>
-    <p>Australia draws millions of visitors every year. But how does it stack up against other major destinations, and how has tourism grown over time?</p>
-    <div class="chart-box" id="gdp_trend_chart"></div>
-    <div class="chart-box" id="world_compare_chart"></div>
+    <p>Australia pulled in over 8 million international visitors in 2024-25 — which sounds impressive until you realise France gets that in a single month. But what Australia lacks in volume, it makes up for in value. Tourists spent a record $81 billion here last year, making up nearly 3% of the whole economy.</p>
+    <p>The COVID years were brutal for tourism. In 2020-21, revenue dropped by almost a third overnight as borders slammed shut. The bounce-back since then has been genuinely surprising — by 2024-25 the industry had not just recovered but hit new highs.</p>
+    <div class="chart-row">
+      <div class="chart-box" id="gdp_trend_chart"></div>
+      <div class="chart-box" id="world_compare_chart"></div>
+    </div>
   </div>
-  
 
   <hr class="divider">
 
@@ -110,10 +132,15 @@
   <div class="section">
     <div class="section-label">Section II</div>
     <h2>Who's Visiting Australia?</h2>
-    <p>Visitors come from all corners of the world. Some countries send far more tourists than others — and their reasons for visiting vary just as much.</p>
-    <div class="chart-box" id="bubble_chart"></div>
-    <div class="chart-box" id="purpose_chart"></div>
-    <div class="chart-box" id="world_map"></div>
+    <p>New Zealand sends the most visitors, but China is where the real money comes from — Chinese tourists spent over $11 billion in Australia last year, more than any other country by a long stretch. The UK and US visitors tend to stay longer, which bumps up their spending too.</p>
+    <p>Most people come here for a holiday, but a surprisingly large chunk come to visit friends and family — which makes sense given how many Australians have connections overseas. Education is bigger than most people expect too, reflecting Australia's popularity as a study destination.</p>
+    <div class="chart-row">
+      <div class="chart-box" id="bubble_chart"></div>
+      <div class="chart-box" id="purpose_chart"></div>
+    </div>
+    <div class="chart-full">
+      <div id="world_map"></div>
+    </div>
   </div>
 
   <hr class="divider">
@@ -122,40 +149,48 @@
   <div class="section">
     <div class="section-label">Section III</div>
     <h2>Where Do Tourists Go?</h2>
-    <p>From the beaches of Queensland to the laneways of Melbourne, tourists spread unevenly across Australia's states and cities.</p>
-    <div class="chart-box" id="city_chart"></div>
-    <div class="chart-box" id="aus_map"></div>
+    <p>No surprises here — Sydney wins. NSW gets more international visitors than any other state, and Sydney alone accounted for $13.7 billion in tourist spending in 2025, up from $10.9 billion the year before. That's a huge jump in one year. Western Australia is the fastest growing though, up 23% in visitor numbers.</p>
+    <p>Outside the big cities, Queensland's Gold Coast and regional Western Australia are punching above their weight. Darwin and Hobart remain niche destinations but are slowly building their international profiles.</p>
+    <div class="chart-row">
+      <div class="chart-box" id="aus_map"></div>
+      <div class="chart-box" id="city_chart"></div>
+    </div>
   </div>
 
   <hr class="divider">
 
   <!-- SECTION IV -->
-<div class="section">
-  <div class="section-label">Section IV</div>
-  <h2>The Economic Impact of Tourism</h2>
-  <p>Tourism isn't just about sightseeing — it's a major driver of jobs, revenue, and GDP across the country.</p>
-  <div class="chart-row">
-    <div class="chart-box" id="jobs_chart"></div>
-    <div class="chart-box" id="gdp_area_chart"></div>
-    <div class="chart-box" id="gdp_jobs_chart"></div>
+  <div class="section">
+    <div class="section-label">Section IV</div>
+    <h2>The Economic Impact of Tourism</h2>
+    <p>Tourism employs 696,000 Australians — more than mining. The biggest employers are cafes and restaurants, followed by retail and accommodation. When COVID hit, those jobs vanished almost instantly. When tourism came back, so did the jobs — which shows just how directly tied employment is to visitor numbers.</p>
+    <p>The relationship between tourism GDP and jobs is remarkably consistent over time. Both collapsed together in 2020-21 and both recovered together after borders reopened. In 2024-25, international visitors contributed $18.6 billion to tourism GDP — still growing back to their pre-COVID share of the economy.</p>
+    <div class="chart-row">
+      <div class="chart-box" id="jobs_chart"></div>
+      <div class="chart-box" id="gdp_area_chart"></div>
+    </div>
+    <div class="chart-full">
+      <div id="gdp_jobs_chart"></div>
+    </div>
   </div>
-</div>
 
   <footer>
-    Visualisation by Anya Grover &nbsp;|&nbsp; Data: Tourism Research Australia, ABS &nbsp;|&nbsp; May 2026
+    Visualisation by Anya Grover | Student ID: 35653299 | May 2026<br>
+    Data: Tourism Research Australia – International Visitor Survey (tra.gov.au) | ABS Tourism Satellite Account (abs.gov.au)<br>
+    AI tools (Claude) used for coding assistance and text refinement.
   </footer>
 
   <script>
-  vegaEmbed('#jobs_chart', 'js/jobs_by_industry.vg.json').catch(console.error);
-  vegaEmbed('#gdp_area_chart', 'js/domestic_vs_international_gdp.vg.json').catch(console.error);
-  vegaEmbed('#gdp_jobs_chart', 'js/tourism_gdp_jobs.vg.json').catch(console.error);
-  vegaEmbed('#gdp_trend_chart', 'js/tourism_gdp_trend.vg.json').catch(console.error);
-  vegaEmbed('#world_compare_chart', 'js/australia_vs_world.vg.json').catch(console.error);
-  vegaEmbed('#bubble_chart', 'js/visitors_bubble.vg.json').catch(console.error);
-  vegaEmbed('#purpose_chart', 'js/purpose_of_visit.vg.json').catch(console.error);
-  vegaEmbed('#city_chart', 'js/city_expenditure.vg.json').catch(console.error);
-  vegaEmbed('#aus_map', 'js/australia_map.vg.json').catch(console.error);
-  vegaEmbed('#world_map', 'js/world_map.vg.json').catch(console.error);
+    vegaEmbed('#gdp_trend_chart', 'js/tourism_gdp_trend.vg.json').catch(console.error);
+    vegaEmbed('#world_compare_chart', 'js/australia_vs_world.vg.json').catch(console.error);
+    vegaEmbed('#bubble_chart', 'js/visitors_bubble.vg.json').catch(console.error);
+    vegaEmbed('#purpose_chart', 'js/purpose_of_visit.vg.json').catch(console.error);
+    vegaEmbed('#world_map', 'js/world_map.vg.json').catch(console.error);
+    vegaEmbed('#aus_map', 'js/australia_map.vg.json').catch(console.error);
+    vegaEmbed('#city_chart', 'js/city_expenditure.vg.json').catch(console.error);
+    vegaEmbed('#jobs_chart', 'js/jobs_by_industry.vg.json').catch(console.error);
+    vegaEmbed('#gdp_area_chart', 'js/domestic_vs_international_gdp.vg.json').catch(console.error);
+    vegaEmbed('#gdp_jobs_chart', 'js/tourism_gdp_jobs.vg.json').catch(console.error);
   </script>
 
 </body>
